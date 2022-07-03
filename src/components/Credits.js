@@ -1,5 +1,5 @@
 // src/components/Credits.js
-
+import React from 'react';
 import {Link} from 'react-router-dom';
 
 const Credits = (props) => {
