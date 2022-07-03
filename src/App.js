@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import axios from "axios"
 
 // Import other components
 import Home from './components/Home';
@@ -17,8 +18,18 @@ class App extends Component {
       currentUser: {
         userName: 'Joe Smith',
         memberSince: '11/22/99',
-      }
+      },
+      credits:[],
+      debits:[]
     }
+  }
+
+  componentDidMount = async () => {
+    let credits = await axios.get("https://moj-api.herokuapp.com/credits")
+    let debits = await axios.get("https://moj-api.herokuapp.com/debits")
+
+    console.log(credits.data)
+    console.log(debits.data)
   }
 
   // Update state's currentUser (userName) after "Log In" button is clicked
@@ -26,6 +37,14 @@ class App extends Component {
     const newUser = {...this.state.currentUser}
     newUser.userName = logInInfo.userName
     this.setState({currentUser: newUser})
+  }
+
+  addCredit = () => {
+
+  }
+
+  addDebit = () => {
+
   }
 
   // Create Routes and React elements to be rendered using React components
