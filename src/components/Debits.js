@@ -3,6 +3,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 const Debits = (props) => {
+  console.log("debit ", props)
   // Create the list of Debit items
 	// let debitsView = () => {
   //   const { debits } = props;

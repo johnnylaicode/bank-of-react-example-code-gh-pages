@@ -26,11 +26,33 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
+    //axios call to get data from api
     let credits = await axios.get("https://moj-api.herokuapp.com/credits")
     let debits = await axios.get("https://moj-api.herokuapp.com/debits")
+    let totalCredits = 0;
+    let totalDebits = 0;
 
-    console.log(credits.data)
-    console.log(debits.data)
+    //setting data to variable
+    credits = credits.data
+    debits = debits.data
+
+    for(let i = 0; i < credits.length; i++) {
+      totalCredits += credits[i].amount
+    }
+
+    for(let i = 0; i < debits.length; i++) {
+      totalDebits += debits[i].amount
+    }
+
+
+    //Following account balance formula
+    let accountBalance = totalCredits - totalDebits
+
+    this.setState({
+      credits,
+      debits,
+      accountBalance
+    })
   }
 
   // Update state's currentUser (userName) after "Log In" button is clicked
